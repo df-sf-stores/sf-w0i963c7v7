@@ -80,6 +80,35 @@
   height: auto;
 }
 
+.photo {
+  margin: 0;
+  background: var(--ink);
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.photoWide {
+  display: none;
+}
+
+.photoSquare {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .photoWide {
+    display: block;
+  }
+
+  .photoSquare {
+    display: none;
+  }
+}
+
 .storyGrid {
   display: grid;
   gap: 24px;

@@ -56,6 +56,15 @@ export const OurStoryPage = () => {
         </div>
       </section>
 
+      <figure className={story.photo}>
+        <div className={story.photoWide}>
+          <ThemeImage src="cover-banner.jpg" alt={t('story.photoAlt')} ratio={2.14} sizes="100vw" />
+        </div>
+        <div className={story.photoSquare}>
+          <ThemeImage src="cover-square.jpg" alt={t('story.photoAlt')} ratio={1} sizes="100vw" />
+        </div>
+      </figure>
+
       <section className={base.bandPaper2} aria-labelledby="story-values">
         <div className={base.wrap}>
           <div className={base.bandHead}>
