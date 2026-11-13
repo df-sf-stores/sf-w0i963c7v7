@@ -72,9 +72,6 @@ export const MenuDrawer = () => {
               <span id={heading} className={base.brandName}>
                 {store.name}
               </span>
-              <span className={base.brandTelugu} lang="te">
-                {t('common.brand.telugu')}
-              </span>
             </Link>
             <button ref={close} type="button" className={base.tool} onClick={() => setOpen(false)}>
               <Icon name="close" />

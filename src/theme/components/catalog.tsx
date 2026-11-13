@@ -13,7 +13,7 @@ export type Slug =
   | 'turmeric-powder'
   | 'coriander-powder'
   | 'guntur-chilli-powder'
-  | 'apurupa-papad'
+  | 'papad'
 
 type Pack = { family: Family; shelf: Shelf }
 
@@ -26,7 +26,7 @@ export const packs: Readonly<Record<Slug, Pack>> = {
   'turmeric-powder': { family: 'turmeric', shelf: 'single' },
   'coriander-powder': { family: 'leaf', shelf: 'single' },
   'guntur-chilli-powder': { family: 'chilli', shelf: 'single' },
-  'apurupa-papad': { family: 'indigo', shelf: 'snack' },
+  'papad': { family: 'indigo', shelf: 'snack' },
 }
 
 export const slugs = Object.keys(packs) as Slug[]
@@ -46,9 +46,12 @@ export const slugOf = (href: string | null | undefined): string => {
 
 export const isSlug = (value: string): value is Slug => Object.hasOwn(packs, value)
 
+/** The pack an address's slug names. The papad's slug carries the shop's name, so it is matched by its ending. */
+const packKey = (slug: string): Slug | null => (isSlug(slug) ? slug : slug.endsWith('-papad') ? 'papad' : null)
+
 export const packOf = (href: string | null | undefined): Pack & { slug: Slug | null } => {
-  const slug = slugOf(href)
-  return isSlug(slug) ? { slug, ...packs[slug] } : { slug: null, family: 'ink', shelf: 'blend' }
+  const slug = packKey(slugOf(href))
+  return slug ? { slug, ...packs[slug] } : { slug: null, family: 'ink', shelf: 'blend' }
 }
 
 /** Each pack's words in content/en/catalog.json, keyed so every t() call names its key in full. */
@@ -61,7 +64,7 @@ export const teluguKey = {
   'turmeric-powder': 'catalog.telugu.turmericPowder',
   'coriander-powder': 'catalog.telugu.corianderPowder',
   'guntur-chilli-powder': 'catalog.telugu.gunturChilliPowder',
-  'apurupa-papad': 'catalog.telugu.papad',
+  'papad': 'catalog.telugu.papad',
 } as const
 
 export const ingredientsKey = {
@@ -73,7 +76,7 @@ export const ingredientsKey = {
   'turmeric-powder': 'catalog.ingredients.turmericPowder',
   'coriander-powder': 'catalog.ingredients.corianderPowder',
   'guntur-chilli-powder': 'catalog.ingredients.gunturChilliPowder',
-  'apurupa-papad': 'catalog.ingredients.papad',
+  'papad': 'catalog.ingredients.papad',
 } as const
 
 export const blurbKey = {
@@ -85,7 +88,7 @@ export const blurbKey = {
   'turmeric-powder': 'catalog.blurb.turmericPowder',
   'coriander-powder': 'catalog.blurb.corianderPowder',
   'guntur-chilli-powder': 'catalog.blurb.gunturChilliPowder',
-  'apurupa-papad': 'catalog.blurb.papad',
+  'papad': 'catalog.blurb.papad',
 } as const
 
 export const shelfKey = { blend: 'catalog.shelf.blend', single: 'catalog.shelf.single', snack: 'catalog.shelf.snack' } as const

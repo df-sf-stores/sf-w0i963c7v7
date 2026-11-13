@@ -13,7 +13,7 @@ import base from '../../styles/base.module.css'
 import cartStyles from '../../styles/cart.module.css'
 
 // The packs worth suggesting beside a basket, in the order the shelf leads with them.
-const suggestions = [...new Set([...staples, ...starterBox, 'coriander-powder', 'chicken-masala', 'mutton-masala', 'apurupa-papad'])]
+const suggestions = [...new Set([...staples, ...starterBox, 'coriander-powder', 'chicken-masala', 'mutton-masala'])]
 
 /** The cart (PDF p7, p16): its lines, a turmeric suggestion, and the ink summary the engine prices, offers included. */
 export const CartView = () => {

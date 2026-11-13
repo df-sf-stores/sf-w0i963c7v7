@@ -674,13 +674,6 @@
   height: 100px;
 }
 
-.brandTelugu {
-  margin-top: 2px;
-  color: var(--paper-2);
-  font-family: var(--telugu);
-  font-size: 11px;
-  line-height: 1;
-}
 
 .pageName {
   overflow: hidden;

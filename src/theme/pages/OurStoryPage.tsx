@@ -33,8 +33,8 @@ export const OurStoryPage = () => {
           </div>
         </div>
         <div className={story.splitPack}>
-          <span className={story.ghost} lang="te" aria-hidden="true">
-            {t('common.brand.telugu')}
+          <span className={story.ghost} aria-hidden="true">
+            {t('home.hero.ghost')}
           </span>
           <div className={story.packHolder}>
             {pack ? <PackPicture product={pack} place="story" className={story.packFrame} /> : <ThemeImage src="single-spices.png" alt={t('story.packAlt')} ratio={0.75} sizes="(min-width: 1100px) 30vw, 60vw" />}
@@ -45,11 +45,11 @@ export const OurStoryPage = () => {
       <section className={base.band} aria-labelledby="story-real">
         <div className={`${base.wrap} ${story.storyGrid}`}>
           <h2 id="story-real" className={base.section}>
-            {store.tagline ?? t('home.hero.line1')}
+            {store.tagline ?? t('story.body.title')}
           </h2>
           <div className={story.storyText}>
             {store.description ? <p className={base.lead}>{store.description}</p> : null}
-            <p>{t('story.body.p1', { shop: store.name, city: store.address?.city ?? t('policy.values.city') })}</p>
+            <p>{t('story.body.p1', { city: store.address?.city ?? t('policy.values.city') })}</p>
             <p>{t('story.body.p2')}</p>
             <p>{t('story.body.p3')}</p>
           </div>

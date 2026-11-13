@@ -8,9 +8,10 @@
   },
   "packAlt": "A pack of spice powder",
   "body": {
-    "p1": "{shop} started with a simple complaint: the spices in the shops did not taste like the ones ground at home. So we went back to the source — Guntur for chilli, the Erode belt for turmeric — and to the old recipes, and began packing them ourselves in {city}.",
+    "p1": "It started with a simple complaint: the spices in the shops did not taste like the ones ground at home. So we went back to the source — Guntur for chilli, the Erode belt for turmeric — and to the old recipes, and began packing them ourselves in {city}.",
     "p2": "Every lot is cleaned and graded before it is ground, and checked again before it is sealed. Blends are roasted spice by spice and ground to a house recipe; single spices are one ingredient and nothing else.",
-    "p3": "We pack in 500 g household sizes because that is what a kitchen that cooks every day goes through, and we seal and batch-code every pouch so you know exactly what you are getting."
+    "p3": "We pack in 500 g household sizes because that is what a kitchen that cooks every day goes through, and we seal and batch-code every pouch so you know exactly what you are getting.",
+    "title": "Why we pack our own"
   },
   "values": {
     "title": "What we hold ourselves to",

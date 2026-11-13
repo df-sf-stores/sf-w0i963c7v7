@@ -55,9 +55,6 @@
     "poweredUrl": "https://www.dripfunnel.com/in/",
     "poweredLogo": "DripFunnel"
   },
-  "brand": {
-    "telugu": "అపురూప"
-  },
   "menu": {
     "products": "{count, plural, one {# product} other {# products}}",
     "spicesNote": "Blends and single spices",

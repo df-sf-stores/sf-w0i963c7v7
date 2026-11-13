@@ -64,11 +64,6 @@ export const Layout = ({ children, title, back = '/', nav, tab = 'shop', bar = f
       <span className={base.brandName}>
         <StoreLogo className={base.brandLogo} />
       </span>
-      {!store.logo && (
-        <span className={base.brandTelugu} lang="te">
-          {t('common.brand.telugu')}
-        </span>
-      )}
     </Link>
   )
   const shop = [

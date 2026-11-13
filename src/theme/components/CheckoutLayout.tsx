@@ -29,9 +29,6 @@ export const CheckoutLayout = ({ children }: { children: ReactNode }) => {
           </Link>
           <Link href="/" className={base.brand}>
             <span className={base.brandName}>{store.name}</span>
-            <span className={base.brandTelugu} lang="te">
-              {t('common.brand.telugu')}
-            </span>
           </Link>
           <p className={cartStyles.secureNote}>
             <Icon name="lock" className={base.iconSmall} />

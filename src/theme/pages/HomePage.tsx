@@ -9,7 +9,7 @@ import base from '../styles/base.module.css'
 import shop from '../styles/shop.module.css'
 import pages from '../styles/pages.module.css'
 
-/** The store's tagline as the hero's three lines ("Real Flavour. Real Aroma. Real Quality."), read from Site settings. */
+/** The store's tagline from Site settings, one sentence to a line; the second line is turmeric. */
 const taglineLines = (tagline: string | null | undefined): string[] =>
   (tagline ?? '')
     .split(/(?<=\.)\s+/)
@@ -22,7 +22,7 @@ export const HomePage = () => {
   const kitchen = useProductCards(staples)
   const box = useProductCards(starterBox)
   const fromStore = taglineLines(store.tagline)
-  const lines = fromStore.length === 3 ? fromStore : [t('home.hero.line1'), t('home.hero.line2'), t('home.hero.line3')]
+  const lines = fromStore.length ? fromStore : [t('home.hero.title')]
   const garam = kitchen.cards.find((c) => packOf(c.href).slug === 'garam-masala') ?? null
   const count = (s: 'blend' | 'single' | 'snack') => shelf.products.filter((p) => packOf(p.href).shelf === s).length
   const counted = shelf.status === 'ready'
@@ -51,9 +51,11 @@ export const HomePage = () => {
           <div className={pages.heroCopy}>
             <p className={`${base.label} ${base.turmericText}`}>{t('home.hero.eyebrow')}</p>
             <h1 id="home-title" className={base.hero}>
-              <span className={pages.line}>{lines[0]}</span>
-              <span className={`${pages.line} ${base.turmericText}`}>{lines[1]}</span>
-              <span className={pages.line}>{lines[2]}</span>
+              {lines.map((line, i) => (
+                <span key={line} className={i === 1 ? `${pages.line} ${base.turmericText}` : pages.line}>
+                  {line}
+                </span>
+              ))}
             </h1>
             <p className={pages.heroLead}>{t('home.hero.lead')}</p>
             <div className={pages.heroActions}>

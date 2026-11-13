@@ -1,15 +1,12 @@
 {
   "hero": {
     "eyebrow": "Taste of home",
-    "title": "Welcome to {store}",
+    "title": "Spices for kitchens that cook every day.",
     "lead": "Eight spices and blends, cleaned, graded and packed in 500 g household packs. For kitchens that cook every day.",
     "shop": "Shop all spices",
     "story": "Our story",
     "image": "none",
     "imageAlt": "A picture of our shop",
-    "line1": "Real flavour.",
-    "line2": "Real aroma.",
-    "line3": "Real quality.",
     "source": "How we source",
     "ghost": "500G",
     "tag": "From the shelf",
