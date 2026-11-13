@@ -1,0 +1,11 @@
+{
+  "title": "Track an order",
+  "lead": "Where your pack is, from the bag to your door.",
+  "oneNumber": "01",
+  "twoNumber": "02",
+  "signedTitle": "Signed in? Your orders are in your account",
+  "signedLead": "Every order you placed while signed in, with its status and courier tracking.",
+  "signedAction": "See my orders",
+  "guestTitle": "Checked out as a guest?",
+  "guestLead": "Open the confirmation page in the browser you ordered from, or send us your order number and the mobile number on the order."
+}

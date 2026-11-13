@@ -1,34 +1,48 @@
-import { Link, SearchField, useCollections, useSearch, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { Link, SearchField, useHead, useSearch, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { ShelfView } from '../components/interactive/ShelfView'
 import { Layout } from '../components/Layout'
-import { ListingResults } from '../components/ListingResults'
-import { Notice } from '../components/Notice'
-import { shop as styles } from '../components/styles/shop'
+import base from '../styles/base.module.css'
+import pages from '../styles/pages.module.css'
 
+/** Search: a full-width field on ink (full screen on phones), then the results as a shelf. */
 export const SearchPage = () => {
   const { t } = useStorefront()
   const search = useSearch()
-  const { collections } = useCollections({ first: 6 })
+  useHead({ title: search.query ? t('shop.search.results', { query: search.query }) : t('shop.search.title'), hidden: true })
   const none = search.status === 'ready' && search.items.length === 0 && search.selected.length === 0
   return (
-    <Layout>
-      <section className={styles.page}>
-        <header className={styles.intro}>
-          <h1 className={styles.title}>{search.query ? t('shop.search.results', { query: search.query }) : t('shop.search.title')}</h1>
-          {search.query ? null : <p className={styles.lead}>{t('shop.search.lead')}</p>}
-        </header>
-        <SearchField label={t('shop.search.label')} placeholder={t('shop.search.placeholder')} button={t('shop.search.button')} value={search.query} onSearch={search.setQuery} suggest={4} className={styles.search} />
-        {none ? (
-          <Notice title={t('shop.search.none', { query: search.query })} lead={t('shop.search.noneLead')}>
-            {collections.map((c) => (
-              <Link key={c.id} href={c.href} className={styles.chipLink}>
-                {c.name}
-              </Link>
-            ))}
-          </Notice>
-        ) : search.status === 'idle' ? null : (
-          <ListingResults listing={search} />
-        )}
+    <Layout title={t('shop.search.title')} tab="search">
+      <section className={pages.searchHero}>
+        <div className={`${base.wrap} ${pages.searchInner}`}>
+          <h1 className={base.pageTitle}>{search.query ? t('shop.search.results', { query: search.query }) : t('shop.search.title')}</h1>
+          <SearchField label={t('shop.search.label')} placeholder={t('shop.search.placeholder')} button={t('shop.search.button')} value={search.query} onSearch={search.setQuery} suggest={4} className={pages.searchField} />
+          <div className={pages.searchShortcuts}>
+            <Link href="/spices/?shelf=blend" className={base.chip}>
+              {t('common.footer.blends')}
+            </Link>
+            <Link href="/spices/?shelf=single" className={base.chip}>
+              {t('common.footer.singles')}
+            </Link>
+            <Link href="/snacks/" className={base.chip}>
+              {t('common.nav.snacks')}
+            </Link>
+            <Link href="/bundles/" className={base.chip}>
+              {t('common.nav.bundles')}
+            </Link>
+          </div>
+        </div>
       </section>
+      {none ? (
+        <div className={`${base.wrap} ${base.notice}`}>
+          <h2 className={base.small}>{t('shop.search.none', { query: search.query })}</h2>
+          <p className={base.noticeLead}>{t('shop.search.noneLead')}</p>
+          <Link href="/spices/" className={base.button}>
+            {t('catalog.shelf.backToShelf')}
+          </Link>
+        </div>
+      ) : search.status === 'idle' ? null : (
+        <ShelfView listing={search} shelves={['blend', 'single', 'snack']} />
+      )}
     </Layout>
   )
 }

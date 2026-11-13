@@ -67,7 +67,7 @@
     "delivery": "Delivery and returns",
     "warranty": "Warranty",
     "questions": "Questions",
-    "related": "You may also like",
+    "related": "Goes in the same dabba",
     "add": "Add to cart",
     "buyNow": "Buy now",
     "added": "Added to your cart.",
@@ -86,7 +86,13 @@
       "sendHintExpiry": "We email it that morning. Leave it empty to send it now. It can be used for {months, plural, one {# month} other {# months}} after it's sent.",
       "add": "Add gift card to cart",
       "needed": "Add the recipient's name and email to add this gift card."
-    }
+    },
+    "onePack": "500 g pack",
+    "size": "Pack size",
+    "addShort": "Add to cart",
+    "trustShip": "Ships in 48 h",
+    "trustSeal": "Tamper-evident seal",
+    "trustGst": "GST invoice"
   },
   "cart": {
     "title": "Your cart",
@@ -122,7 +128,15 @@
       "alreadyUsed": "You've already used this code.",
       "invalid": "That code isn't valid. Check it and try again."
     },
-    "giftFor": "For {name} ({email})"
+    "giftFor": "For {name} ({email})",
+    "countLine": "{count, plural, one {# item} other {# items}} · ships from {city}",
+    "removeNamed": "Remove {name}",
+    "upsellEyebrow": "Goes well with this",
+    "upsellWith": "Bought with {bought}: most people add {next}",
+    "upsellPlain": "Most people add {next}",
+    "gstIncluded": "GST (5%) included in prices",
+    "secure": "Secure checkout",
+    "total": "Total"
   },
   "checkout": {
     "title": "Checkout",
@@ -184,7 +198,11 @@
     "giftCardRefused": "That number doesn't match a gift card. Check it and try again.",
     "giftCardTooMany": "Too many tries. Wait a few minutes and try again.",
     "giftCardPreview": "Gift cards can't be used on a preview of the shop; they work on the live shop.",
-    "giftCardFailed": "We couldn't check that gift card. Try again in a minute."
+    "giftCardFailed": "We couldn't check that gift card. Try again in a minute.",
+    "stepCart": "Cart",
+    "stepDelivery": "Delivery",
+    "stepPay": "Pay",
+    "steps": "Checkout steps"
   },
   "order": {
     "loading": "Loading your order",
@@ -219,7 +237,23 @@
     "downloadLeft": "{count, plural, one {# download left} other {# downloads left}}, until {date}.",
     "keys": "Your licence keys",
     "giftOn": "We email the gift card to {name} on {date}, and send you a copy.",
-    "giftNow": "We've emailed the gift card to {name}, and sent you a copy."
+    "giftNow": "We've emailed the gift card to {name}, and sent you a copy.",
+    "numberLine": "Order #{number}",
+    "sentLine": "A confirmation with your order details is on its way to your email.",
+    "next": {
+      "title": "What happens next",
+      "placed": "Order placed",
+      "packed": "Packed & sealed",
+      "courier": "Handed to courier",
+      "delivered": "Delivered",
+      "placedNote": "Done",
+      "later": "We will update you at each step"
+    },
+    "paidLabel": "Order total",
+    "reference": "Reference: order {number}",
+    "track": "Track order",
+    "lowTitle": "Running low on something else?",
+    "lowLead": "Place another order before this one is packed and we will try to send them together."
   },
   "orders": {
     "title": "Orders",
@@ -292,5 +326,18 @@
     "view": "View product",
     "remove": "Remove",
     "removeLabel": "Remove {name} from your wishlist"
+  },
+  "viewer": {
+    "front": "Front",
+    "back": "Back",
+    "left": "Left",
+    "right": "Right",
+    "top": "Top",
+    "chip": "3D · drag to rotate",
+    "hint": "Drag to rotate",
+    "role": "pack viewer",
+    "label": "{name} pack: drag or use the arrow keys to turn it",
+    "views": "Views",
+    "alt": "{name} 500 g pack, {view}"
   }
 }

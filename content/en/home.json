@@ -1,12 +1,19 @@
 {
   "hero": {
-    "eyebrow": "Welcome",
+    "eyebrow": "Taste of home",
     "title": "Welcome to {store}",
-    "lead": "Take a look around and find something you love.",
-    "shop": "Shop now",
+    "lead": "Eight spices and blends, cleaned, graded and packed in 500 g household packs. For kitchens that cook every day.",
+    "shop": "Shop all spices",
     "story": "Our story",
     "image": "none",
-    "imageAlt": "A picture of our shop"
+    "imageAlt": "A picture of our shop",
+    "line1": "Real flavour.",
+    "line2": "Real aroma.",
+    "line3": "Real quality.",
+    "source": "How we source",
+    "ghost": "500G",
+    "tag": "From the shelf",
+    "packAlt": "A 500 g pack of Garam Masala"
   },
   "story": {
     "eyebrow": "Our story",
@@ -25,5 +32,68 @@
   "newest": {
     "title": "New in",
     "all": "See all"
+  },
+  "shelf": {
+    "title": "Browse the shelf",
+    "note": "Every pack is something a South Indian kitchen runs out of.",
+    "browse": "Browse",
+    "blendEyebrow": "Blends",
+    "blendCount": "{count, plural, one {# blend} other {# blends}}",
+    "blendTitle": "Blended masalas",
+    "blendBlurb": "Garam, chicken, mutton, rasam, sambar — ground to a house recipe.",
+    "blendAlt": "A pack of Garam Masala",
+    "singleEyebrow": "Powders",
+    "singleCount": "{count, plural, one {# powder} other {# powders}}",
+    "singleTitle": "Single spices",
+    "singleBlurb": "Turmeric, coriander, Guntur chilli. One ingredient, nothing else.",
+    "singleAlt": "A pack of Coriander Powder",
+    "snackEyebrow": "Snacks",
+    "snackCount": "{count, plural, one {# item} other {# items}}",
+    "snackTitle": "Snacks",
+    "snackBlurb": "Papad, sun-dried and packed by the dozen.",
+    "snackAlt": "Four packs of papad"
+  },
+  "staples": {
+    "eyebrow": "Bought most often",
+    "title": "Kitchen staples",
+    "all": "All products",
+    "allCount": "{count, plural, one {All # product} other {All # products}}"
+  },
+  "field": {
+    "title": "From the field to your",
+    "titleEnd": "dabba",
+    "note": "Four steps, checked at each one. Batch numbers printed on every pouch.",
+    "s1Title": "Sourcing",
+    "s1Body": "Bought from trusted growing regions — Guntur for chilli, the Erode belt for turmeric.",
+    "s2Title": "Quality checking",
+    "s2Body": "Checked at raw-material intake, then again at every production stage.",
+    "s3Title": "Packing",
+    "s3Body": "Ground, weighed and heat-sealed into tamper-evident 500 g pouches.",
+    "s4Title": "Dispatch",
+    "s4Body": "Batch-coded and shipped within 48 hours of the order."
+  },
+  "box": {
+    "eyebrow": "The starter box",
+    "title": "The South Indian Starter",
+    "lead": "Sambar powder, rasam powder, turmeric and Guntur chilli. The four things that go into most meals here, in one box.",
+    "add": "Add the box",
+    "adding": "Adding the box",
+    "added": "All four packs are in your cart.",
+    "partial": "Some packs could not be added; the rest are in your cart.",
+    "failed": "We could not add the box. Try again.",
+    "inCart": "View cart",
+    "inside": "See what is inside",
+    "packs": "The four packs in the box"
+  },
+  "trust": {
+    "label": "Why buy here",
+    "sealTitle": "Tamper-evident seal",
+    "sealBody": "Heat-sealed pouch, batch-coded",
+    "shipTitle": "Ships in 48 hours",
+    "shipBody": "Cash on delivery available",
+    "gstTitle": "GST invoice",
+    "gstBody": "On every single order",
+    "pureTitle": "Nothing added",
+    "pureBody": "No colour, no filler, no anti-caking agent"
   }
 }

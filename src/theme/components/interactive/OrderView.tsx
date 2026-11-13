@@ -1,6 +1,9 @@
 'use client'
 
-import { Link, OrderSummary, PaymentElement, useOrder, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { Link, OrderSummary, PaymentElement, Price, useOrder, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { Icon } from '../Icon'
+import base from '../../styles/base.module.css'
+import cartStyles from '../../styles/cart.module.css'
 import { DeliveryTracking } from '../DeliveryTracking'
 import { Notice } from '../Notice'
 import { OrderPill } from '../OrderPill'
@@ -14,7 +17,7 @@ import { order as styles } from '../styles/order'
  * `inAccount`, the same order in the account (`/account/orders/{id}/`), headed by its number.
  */
 export const OrderView = ({ inAccount = false }: { inAccount?: boolean }) => {
-  const { locale, t } = useStorefront()
+  const { store, locale, t } = useStorefront()
   const page = useOrder()
 
   if (page.status === 'loading') {
@@ -46,18 +49,65 @@ export const OrderView = ({ inAccount = false }: { inAccount?: boolean }) => {
     )
   }
   const awaiting = !order.cancelled && order.payment === 'awaiting'
+  const welcome = !inAccount && !order.cancelled
+  const timeline = [t('shop.order.next.placed'), t('shop.order.next.packed'), t('shop.order.next.courier'), t('shop.order.next.delivered')]
   return (
+    <>
+    {welcome ? (
+      <section className={cartStyles.orderHero}>
+        <div className={`${base.wrap} ${cartStyles.orderHeroInner}`}>
+          <span className={cartStyles.checkSquare} aria-hidden="true">
+            <Icon name="check" className={cartStyles.checkIcon} />
+          </span>
+          <OrderPill order={order} />
+          <h1 className={base.pageTitle}>{t('shop.order.title')}</h1>
+          <p className={cartStyles.orderNumber}>{t('shop.order.numberLine', { number: order.number })}</p>
+          <p className={cartStyles.orderLead}>{t('shop.order.sentLine')}</p>
+        </div>
+      </section>
+    ) : null}
+    {welcome ? (
+      <section className={`${base.wrap} ${cartStyles.next}`} aria-labelledby="order-next">
+        <div>
+          <h2 id="order-next" className={base.section}>
+            {t('shop.order.next.title')}
+          </h2>
+          <ol className={cartStyles.timeline}>
+            {timeline.map((step, i) => (
+              <li key={step} className={cartStyles.timelineItem} aria-current={i === 0 ? 'step' : undefined}>
+                <span className={i === 0 ? cartStyles.pipDone : cartStyles.pip} aria-hidden="true" />
+                <span className={cartStyles.timelineTitle}>{step}</span>
+                <span className={base.meta}>{i === 0 ? t('shop.order.next.placedNote') : t('shop.order.next.later')}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className={cartStyles.inkCard}>
+          <p className={base.label}>{t('shop.order.paidLabel')}</p>
+          <Price money={order.total} includesTax={store.pricesIncludeTax} locale={locale} t={t} className={cartStyles.barPrice} />
+          {order.method ? (
+            <p>
+              <PaymentMethod provider={order.method} />
+            </p>
+          ) : null}
+          <p>{t('shop.order.reference', { number: order.number })}</p>
+          <Link href="/track-order/" className={base.onInk}>
+            {t('shop.order.track')}
+          </Link>
+        </div>
+      </section>
+    ) : null}
     <section className={shop.page}>
       <div className={styles.order}>
         <div className={styles.main}>
-          <div className={styles.head}>
+          <div className={welcome ? base.hidden : styles.head}>
             {inAccount ? (
               <Link href="/account/" className={styles.back}>
                 {t('shop.order.backToAccount')}
               </Link>
             ) : null}
             <OrderPill order={order} />
-            <h1 className={styles.title}>{order.cancelled ? t('shop.order.cancelledTitle') : inAccount ? t('shop.order.summary', { number: order.number }) : t('shop.order.title')}</h1>
+            {welcome ? null : <h1 className={styles.title}>{order.cancelled ? t('shop.order.cancelledTitle') : inAccount ? t('shop.order.summary', { number: order.number }) : t('shop.order.title')}</h1>}
             {order.cancelled ? <p className={styles.lead}>{t('shop.order.cancelledLead', { number: order.number })}</p> : inAccount ? null : <p className={styles.lead}>{t('shop.order.lead', { number: order.number })}</p>}
           </div>
           {awaiting && order.method === 'bank_transfer' ? (
@@ -142,11 +192,22 @@ export const OrderView = ({ inAccount = false }: { inAccount?: boolean }) => {
               ) : null}
             </dl>
           </div>
-          <div className={styles.actions}>
-            <Link href="/" className={shop.secondary}>
-              {t('shop.order.keepShopping')}
-            </Link>
-          </div>
+          {welcome ? (
+            <div className={cartStyles.lowOn}>
+              <h2 className={base.small}>{t('shop.order.lowTitle')}</h2>
+              <p>{t('shop.order.lowLead')}</p>
+              <Link href="/spices/" className={base.inverted}>
+                {t('catalog.shelf.backToShelf')}
+                <Icon name="arrow" className={base.iconSmall} />
+              </Link>
+            </div>
+          ) : (
+            <div className={styles.actions}>
+              <Link href="/" className={shop.secondary}>
+                {t('shop.order.keepShopping')}
+              </Link>
+            </div>
+          )}
         </div>
         <aside className={styles.side}>
           <h2 className={styles.sideTitle}>{inAccount ? t('shop.checkout.summary') : t('shop.order.summary', { number: order.number })}</h2>
@@ -154,5 +215,6 @@ export const OrderView = ({ inAccount = false }: { inAccount?: boolean }) => {
         </aside>
       </div>
     </section>
+    </>
   )
 }

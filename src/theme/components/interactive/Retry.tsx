@@ -1,9 +1,9 @@
 'use client'
 
-import { shop as styles } from '../styles/shop'
+import base from '../../styles/base.module.css'
 
 export const Retry = ({ label, onRetry }: { label: string; onRetry: () => void }) => (
-  <button type="button" className={styles.secondary} onClick={onRetry}>
+  <button type="button" className={base.secondary} onClick={onRetry}>
     {label}
   </button>
 )

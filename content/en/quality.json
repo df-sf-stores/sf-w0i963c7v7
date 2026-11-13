@@ -1,0 +1,44 @@
+{
+  "seoTitle": "Quality",
+  "hero": {
+    "title": "Checked at every stage, not just the last one",
+    "lead": "Four stages, a check at each one, and a batch code on every pouch so any pack can be traced back to its lot."
+  },
+  "chain": {
+    "title": "The chain",
+    "note": "Every pouch can be traced back through these four steps by its batch code.",
+    "c1Title": "Sourcing",
+    "c1Body": "Whole spices bought from known growing regions, lot by lot.",
+    "c2Title": "Quality checking",
+    "c2Body": "Inspected at intake for moisture, colour, aroma and foreign matter.",
+    "c3Title": "Packaging",
+    "c3Body": "Ground, weighed and heat-sealed into tamper-evident 500 g pouches.",
+    "c4Title": "Dispatch",
+    "c4Body": "Batch-coded, boxed and handed to the courier within 48 hours."
+  },
+  "checks": {
+    "title": "What gets checked",
+    "k1Title": "At intake",
+    "k1a": "Moisture and dryness",
+    "k1b": "Colour and aroma against a reference sample",
+    "k1c": "Stones, husk and foreign matter",
+    "k2Title": "In process",
+    "k2a": "Roast colour for each spice in a blend",
+    "k2b": "Grind fineness",
+    "k2c": "Recipe weights for every batch",
+    "k3Title": "Before dispatch",
+    "k3a": "Net weight of every pouch",
+    "k3b": "Seal integrity",
+    "k3c": "Batch code and dates printed and legible"
+  },
+  "compliance": {
+    "title": "Compliance",
+    "fssaiTitle": "FSSAI licence",
+    "fssaiBody": "Packed under FSSAI licence [your FSSAI licence number], printed on every pack.",
+    "metrologyTitle": "Legal metrology",
+    "metrologyBody": "Net quantity and MRP declared on every pack under the Packaged Commodities Rules.",
+    "metrologyLink": "What the label carries",
+    "complaintsTitle": "Complaints",
+    "complaintsBody": "Quote the batch code and we trace the lot, reply within one working day, and replace anything that is not right."
+  }
+}

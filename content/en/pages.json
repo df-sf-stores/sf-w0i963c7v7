@@ -53,10 +53,11 @@
     "ask": "Questions about this policy? Get in touch and we will answer."
   },
   "notFound": {
-    "title": "We can’t find that page",
-    "lead": "The link may be old, or the page may have been taken down.",
+    "title": "Not on this shelf",
+    "lead": "The link may be old, or the page has moved. Everything we sell is one tap away.",
     "action": "Go to the home page",
-    "search": "Search the shop"
+    "search": "Search the shop",
+    "eyebrow": "Page not found"
   },
   "degraded": {
     "title": "We will be back soon",
@@ -69,10 +70,14 @@
   },
   "contact": {
     "title": "Get in touch",
-    "lead": "Questions about an order or anything else? Write to us and we will reply.",
+    "lead": "Questions about an order, a pack or a bulk enquiry? A person answers, Monday to Saturday.",
     "email": "Email",
     "phone": "Phone",
-    "visit": "Visit"
+    "visit": "Visit",
+    "whatsapp": "WhatsApp",
+    "whatsappLead": "Send your order number and we will reply during working hours.",
+    "whatsappAction": "Message us on WhatsApp",
+    "emailLead": "For invoices, bulk orders and anything that needs a paper trail."
   },
   "content": {
     "loading": "Loading the page",

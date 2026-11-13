@@ -1,0 +1,536 @@
+/* Product detail: the viewer, the buy box and the label. */
+
+.split {
+  display: grid;
+}
+
+@media (min-width: 1100px) {
+  .split {
+    align-items: start;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.viewer {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: clamp(380px, 110vw, 560px);
+  align-content: space-between;
+  justify-items: center;
+  padding: 16px var(--margin) 20px;
+  color: var(--white);
+}
+
+@media (min-width: 1100px) {
+  .viewer {
+    position: sticky;
+    top: 76px;
+    min-height: min(calc(100vh - 76px), 920px);
+    padding: 24px;
+  }
+}
+
+.viewerDiamond {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(118%, 520px);
+  aspect-ratio: 1;
+  height: auto;
+  color: currentcolor;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.chip {
+  position: relative;
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-self: start;
+  gap: 8px;
+  padding: 0 12px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.stage {
+  --turn: 0deg;
+  position: relative;
+  display: grid;
+  width: 100%;
+  place-items: center;
+  padding: 12px 0;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.stage:active {
+  cursor: grabbing;
+}
+
+.stage:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: -4px;
+}
+
+.packFrame {
+  position: relative;
+  width: min(62%, 380px);
+  filter: drop-shadow(0 26px 30px rgb(0 0 0 / 0.38));
+  transform: perspective(900px) rotateY(var(--turn));
+  transition-property: transform;
+  transition-duration: 200ms;
+}
+
+.packFrame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .packFrame {
+    transition-property: none;
+  }
+}
+
+.noPack {
+  display: grid;
+  aspect-ratio: 3 / 4;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  border: 1px solid currentcolor;
+}
+
+.noPackTelugu {
+  font-family: var(--telugu);
+  font-size: clamp(22px, 5vw, 34px);
+}
+
+.hint {
+  position: relative;
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  background: color-mix(in srgb, var(--ink) 70%, transparent);
+  color: var(--paper);
+  font-size: 13px;
+}
+
+.views {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.view {
+  min-width: 56px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--paper-2);
+  background: var(--white);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.viewOn {
+  min-width: 56px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 2px solid var(--ink);
+  background: var(--white);
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Info column */
+
+.info {
+  display: grid;
+  box-sizing: border-box;
+  min-width: 0;
+  align-content: start;
+  gap: 18px;
+  padding: 24px var(--margin) 40px;
+}
+
+@media (min-width: 1100px) {
+  .info {
+    max-width: 640px;
+    padding: 48px var(--margin) 72px;
+  }
+}
+
+.titleBlock {
+  display: grid;
+  gap: 8px;
+}
+
+.titleRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 12px;
+  align-items: start;
+}
+
+.shelf {
+  color: var(--chilli);
+}
+
+.telugu {
+  color: var(--chilli);
+  font-family: var(--telugu);
+  font-size: clamp(18px, calc(14px + 1vw), 28px);
+  line-height: 1.2;
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+.bigPrice {
+  display: inline-block;
+  --df-price-size: clamp(22px, calc(18px + 0.8vw), 30px);
+  --df-sealed-size: 13px;
+  --df-sealed-color: var(--muted);
+}
+
+.bigPrice::part(amount) {
+  font-weight: 700;
+}
+
+.lede {
+  max-width: 52ch;
+  color: var(--ink-2);
+  font-size: var(--t-body-l);
+}
+
+.buy {
+  display: grid;
+  gap: 14px;
+}
+
+.sizes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.size {
+  display: grid;
+  box-sizing: border-box;
+  min-height: 76px;
+  align-content: start;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--paper-2);
+  background: var(--white);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.sizeOn {
+  display: grid;
+  box-sizing: border-box;
+  min-height: 76px;
+  align-content: start;
+  gap: 4px;
+  padding: 13px 15px;
+  border: 2px solid var(--ink);
+  background: var(--white);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.sizeTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sizeName {
+  font-family: var(--display);
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.tick {
+  width: 14px;
+  height: 14px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--ink);
+}
+
+.tickOn {
+  width: 14px;
+  height: 14px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--ink);
+  background: var(--ink);
+}
+
+.sizePrice {
+  display: inline-block;
+  --df-price-size: 16px;
+  --df-sealed-size: 12px;
+}
+
+.stock {
+  color: var(--leaf);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.addRow {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .addRow {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+  }
+}
+
+.addInk {
+  display: inline-flex;
+  box-sizing: border-box;
+  min-height: 58px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 24px;
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.addInk:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.buttonPrice {
+  display: inline-block;
+  color: inherit;
+  --df-price-size: 13px;
+  --df-sealed-size: 11px;
+  --df-sealed-color: currentcolor;
+}
+
+.stepper {
+  display: inline-flex;
+  flex: none;
+  align-items: stretch;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+
+.stepperWhite {
+  display: inline-flex;
+  flex: none;
+  align-items: stretch;
+  border: 1px solid var(--paper-2);
+  background: var(--white);
+}
+
+.stepButton {
+  display: inline-flex;
+  width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.stepButton:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.stepValue {
+  display: inline-flex;
+  min-width: 28px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.added {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  color: var(--leaf);
+  font-weight: 600;
+}
+
+.mobileBar {
+  gap: 10px;
+}
+
+.barPrice {
+  display: grid;
+  min-width: 0;
+}
+
+@media (max-width: 359px) {
+  .barPrice {
+    display: none;
+  }
+}
+
+.trust {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--paper-2);
+  border-bottom: 1px solid var(--paper-2);
+  list-style: none;
+  gap: 10px 24px;
+  font-size: 14px;
+}
+
+.trust li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.highlights {
+  display: grid;
+  margin: 0;
+  padding-left: 18px;
+  gap: 4px;
+}
+
+/* What's on the label */
+
+.labelFold {
+  border-top: 1px solid var(--paper-2);
+}
+
+@media (min-width: 1100px) {
+  .labelFold {
+    margin-top: 12px;
+    border-top: 0;
+  }
+}
+
+.labelHeading {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .labelHeading {
+    display: block;
+    margin-bottom: 12px;
+  }
+}
+
+.label {
+  display: grid;
+  margin: 0;
+}
+
+.labelRow {
+  display: grid;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--paper-2);
+  gap: 4px;
+}
+
+@media (min-width: 560px) {
+  .labelRow {
+    grid-template-columns: minmax(120px, 34%) 1fr;
+    gap: 16px;
+  }
+}
+
+.labelRow dt {
+  color: var(--muted);
+}
+
+.labelRow dd {
+  margin: 0;
+  font-size: 15px;
+}
+
+.mrp {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.labelPrice {
+  display: inline-block;
+  --df-price-size: 15px;
+  --df-sealed-size: 12px;
+}
+
+.legal {
+  display: block;
+  margin-top: 12px;
+  --df-sealed-size: 14px;
+}
+
+.rich {
+  display: block;
+  color: var(--ink-2);
+}
+
+.faqs {
+  display: grid;
+  margin: 0;
+  gap: 14px;
+}
+
+.faqs dt {
+  font-weight: 700;
+}
+
+.faqs dd {
+  margin: 0;
+  color: var(--ink-2);
+}

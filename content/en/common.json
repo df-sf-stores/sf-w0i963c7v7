@@ -5,7 +5,16 @@
     "submenu": "Submenu: {item}",
     "shop": "Shop",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "spices": "Spices",
+    "snacks": "Snacks",
+    "bundles": "Bundles",
+    "bundlesKits": "Bundles & kits",
+    "story": "Our story",
+    "quality": "Quality",
+    "track": "Track an order",
+    "close": "Close",
+    "back": "Back"
   },
   "tools": {
     "search": "Search",
@@ -20,11 +29,71 @@
     "shop": "Shop",
     "all": "Shop all",
     "help": "Help",
-    "shipping": "Shipping",
-    "returns": "Returns",
-    "privacy": "Privacy",
-    "terms": "Terms",
+    "shipping": "Shipping policy",
+    "returns": "Returns & refunds",
+    "privacy": "Privacy policy",
+    "terms": "Terms of service",
     "legal": "Legal",
-    "notice": "Legal notice"
+    "notice": "Legal notice",
+    "allSpices": "All spices",
+    "blends": "Blended masalas",
+    "singles": "Single spices",
+    "snacks": "Snacks",
+    "bundles": "Bundles & kits",
+    "track": "Track your order",
+    "contact": "Contact us",
+    "faqs": "FAQs",
+    "refunds": "Refund policy",
+    "shippingPolicy": "Shipping policy",
+    "fssai": "FSSAI & labelling",
+    "blurb": "Spices cleaned, graded and packed in {city}. Sold direct, and through retail and distribution partners across India.",
+    "cityFallback": "India",
+    "company": "© 2026 Bigsof Current Pvt Ltd · {address}",
+    "companyOnly": "© 2026 Bigsof Current Pvt Ltd",
+    "payLabel": "Ways to pay",
+    "poweredBy": "Powered by",
+    "poweredUrl": "https://www.dripfunnel.com/in/",
+    "poweredLogo": "DripFunnel"
+  },
+  "brand": {
+    "telugu": "అపురూప"
+  },
+  "menu": {
+    "products": "{count, plural, one {# product} other {# products}}",
+    "spicesNote": "Blends and single spices",
+    "snacksNote": "Papad, sun-dried",
+    "bundlesNote": "Ready-made boxes from the shelf",
+    "promoTitle": "First order?",
+    "promoLead": "Every pack ships sealed and batch-coded, with a GST invoice.",
+    "signIn": "Sign in",
+    "register": "Create account"
+  },
+  "tabs": {
+    "label": "Shortcuts",
+    "shop": "Shop",
+    "search": "Search",
+    "cart": "Cart",
+    "you": "You"
+  },
+  "announce": {
+    "cod": "Cash on delivery available",
+    "fssai": "FSSAI Lic. [your FSSAI number]",
+    "gst": "GST invoice on every order",
+    "ships": "Ships within 48 hours"
+  },
+  "contact": {
+    "callHref": "tel:{phone}",
+    "hours": "Mon–Sat, 10 am – 6 pm IST"
+  },
+  "facts": {
+    "fssai": "FSSAI Lic. [your FSSAI licence number]",
+    "fssaiShort": "FSSAI [number]",
+    "gstin": "GSTIN 36AAICB8080A1ZU"
+  },
+  "pay": {
+    "upi": "UPI",
+    "cards": "Cards",
+    "netbanking": "Netbanking",
+    "cod": "Cash on delivery"
   }
 }

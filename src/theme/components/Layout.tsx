@@ -1,141 +1,209 @@
 import type { ReactNode } from 'react'
-import { ConsentBanner, ConsentSettingsButton, Link, PoweredBy, PreviewBanner, StoreLogo, useCart, useMenu, useStorefront, useWishlist } from '@dripfunnel/storefront-core/theme'
-import { Menu } from './interactive/Menu'
-import { NavItem } from './interactive/NavItem'
-import { layout as styles } from './styles/layout'
+import { ConsentBanner, Link, PoweredBy, PreviewBanner, StoreLogo, useCart, useOffers, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { clsx } from 'clsx'
+import { Icon } from './Icon'
+import { FooterBar } from './FooterBar'
+import { FooterGroup } from './interactive/FooterGroup'
+import { MenuDrawer } from './interactive/MenuDrawer'
+import { WishlistTool } from './interactive/WishlistTool'
+import base from '../styles/base.module.css'
 
-export const Layout = ({ children }: { children: ReactNode }) => {
-  const { store, t, mode, poweredBy } = useStorefront()
-  const menu = useMenu()
-  const { count } = useCart()
-  const { count: wished } = useWishlist()
+export type NavKey = 'spices' | 'snacks' | 'bundles' | 'story' | 'quality'
+export type TabKey = 'shop' | 'search' | 'cart' | 'you'
+/** Where an inner page's phone back arrow leads. */
+export type BackTo = '/' | '/spices/' | '/snacks/'
+
+const Announce = () => {
+  const { t } = useStorefront()
+  const { offers } = useOffers()
+  const items = [...offers.filter((o) => o.appliesTo !== 'products').map((o) => o.name), t('common.announce.cod'), t('common.announce.fssai'), t('common.announce.gst'), t('common.announce.ships')]
+  const list = (copy: boolean) => (
+    <ul className={clsx(base.announceList, copy && base.announceCopy)} aria-hidden={copy ? 'true' : undefined}>
+      {items.map((item, i) => (
+        <li key={`${item}-${i}`} className={base.announceItem}>
+          {item}
+          <span className={base.announceDot} />
+        </li>
+      ))}
+    </ul>
+  )
   return (
-    <div className={styles.shell}>
-      {mode === 'live' ? null : <PreviewBanner t={t} className={styles.preview} />}
-      <header className={styles.header}>
-        <div className={styles.bar}>
-          <Link href="/" className={styles.brand}>
-            <StoreLogo className={styles.logo} />
-          </Link>
-          <Menu label={t('common.nav.menu')}>
-            <nav className={styles.nav} aria-label={t('common.nav.label')}>
-              {menu.items.length ? (
-                menu.items.map((item) => <NavItem key={item.id} item={item} />)
-              ) : (
-                <Link href="/collections/all/" className={styles.navLink}>
-                  {t('common.nav.shop')}
+    <div className={base.announce}>
+      <div className={base.announceTrack}>
+        {list(false)}
+        {list(true)}
+      </div>
+    </div>
+  )
+}
+
+/**
+ * Every page's frame (PDF p2, p13): the turmeric announcement bar, the ink header, the phone tab bar and the footer.
+ * A page with a `title` gets the inner phone header (back, title, search, cart); without one, the home header (menu,
+ * logo, search, cart). `bar` says the page keeps its own sticky action bar, so the tab bar steps aside for it.
+ */
+export const Layout = ({ children, title, back = '/', nav, tab = 'shop', bar = false }: { children: ReactNode; title?: string; back?: BackTo; nav?: NavKey; tab?: TabKey | null; bar?: boolean }) => {
+  const { store, t, mode, poweredBy } = useStorefront()
+  const { count } = useCart()
+  const links: { key: NavKey; href: string; label: string }[] = [
+    { key: 'spices', href: '/spices/', label: t('common.nav.spices') },
+    { key: 'snacks', href: '/snacks/', label: t('common.nav.snacks') },
+    { key: 'bundles', href: '/bundles/', label: t('common.nav.bundles') },
+    { key: 'story', href: '/our-story/', label: t('common.nav.story') },
+    { key: 'quality', href: '/quality/', label: t('common.nav.quality') },
+  ]
+  const tabs: { key: TabKey; href: string; label: string; icon: 'flame' | 'search' | 'bag' | 'user' }[] = [
+    { key: 'shop', href: '/spices/', label: t('common.tabs.shop'), icon: 'flame' },
+    { key: 'search', href: '/search/', label: t('common.tabs.search'), icon: 'search' },
+    { key: 'cart', href: '/cart/', label: t('common.tabs.cart'), icon: 'bag' },
+    { key: 'you', href: '/account/', label: t('common.tabs.you'), icon: 'user' },
+  ]
+  const cartLabel = count > 0 ? t('common.tools.cartCount', { count }) : t('common.tools.cart')
+  const brand = (
+    <Link href="/" className={base.brand} aria-label={store.logo ? store.name : undefined}>
+      <span className={base.brandName}>
+        <StoreLogo className={base.brandLogo} />
+      </span>
+      {!store.logo && (
+        <span className={base.brandTelugu} lang="te">
+          {t('common.brand.telugu')}
+        </span>
+      )}
+    </Link>
+  )
+  const shop = [
+    { href: '/spices/', label: t('common.footer.allSpices') },
+    { href: '/spices/?shelf=blend', label: t('common.footer.blends') },
+    { href: '/spices/?shelf=single', label: t('common.footer.singles') },
+    { href: '/snacks/', label: t('common.footer.snacks') },
+    { href: '/bundles/', label: t('common.footer.bundles') },
+  ]
+  const help = [
+    { href: '/track-order/', label: t('common.footer.track') },
+    { href: '/policies/shipping/', label: t('common.footer.shipping') },
+    { href: '/policies/refunds/', label: t('common.footer.returns') },
+    { href: '/contact/', label: t('common.footer.contact') },
+    { href: '/faqs/', label: t('common.footer.faqs') },
+  ]
+  const legal = [
+    { href: '/policies/privacy/', label: t('common.footer.privacy') },
+    { href: '/policies/terms/', label: t('common.footer.terms') },
+    { href: '/policies/refunds/', label: t('common.footer.refunds') },
+    { href: '/policies/shipping/', label: t('common.footer.shippingPolicy') },
+    { href: '/fssai-labelling/', label: t('common.footer.fssai') },
+  ]
+  return (
+    <div className={clsx(base.shell, bar && base.withBar, !tab && !bar && base.noTabbar)}>
+      {mode === 'live' ? null : <PreviewBanner t={t} className={base.preview} />}
+      <Announce />
+      <header className={base.header}>
+        <div className={base.bar}>
+          <div className={base.barStart}>
+            <span className={base.mobileOnly}>
+              {title ? (
+                <Link href={back} className={base.tool}>
+                  <Icon name="back" />
+                  <span className={base.hidden}>{t('common.nav.back')}</span>
                 </Link>
+              ) : (
+                <MenuDrawer />
               )}
-              <Link href="/about/" className={styles.navLink}>
-                {t('common.nav.about')}
+            </span>
+            <span className={base.desktopOnly}>{brand}</span>
+          </div>
+          <div className={`${base.barMid} ${base.mobileOnly}`}>{title ? <p className={base.pageName}>{title}</p> : brand}</div>
+          <nav className={base.nav} aria-label={t('common.nav.label')}>
+            {links.map((l) => (
+              <span key={l.key} className={l.key === nav ? base.navOn : undefined} aria-current={l.key === nav ? 'page' : undefined}>
+                <Link href={l.href} className={base.navLink}>
+                  {l.label}
+                </Link>
+              </span>
+            ))}
+          </nav>
+          <div className={base.barEnd}>
+            <Link href="/search/" className={base.tool}>
+              <Icon name="search" />
+              <span className={base.hidden}>{t('common.tools.search')}</span>
+            </Link>
+            <WishlistTool />
+            <span className={base.desktopOnly}>
+              <Link href="/account/" className={base.tool}>
+                <Icon name="user" />
+                <span className={base.hidden}>{t('common.tools.account')}</span>
               </Link>
-              <Link href="/contact/" className={styles.navLink}>
-                {t('common.nav.contact')}
+            </span>
+            <span className={base.mobileOnly}>
+              <Link href="/cart/" className={base.tool}>
+                <Icon name="bag" />
+                <span className={base.hidden}>{cartLabel}</span>
+                {count > 0 ? (
+                  <span className={base.toolCount} aria-hidden="true">
+                    {count}
+                  </span>
+                ) : null}
               </Link>
-            </nav>
-          </Menu>
-          <div className={styles.tools}>
-            <Link href="/search/" className={styles.tool}>
-              <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <circle cx="11" cy="11" r="6.5" />
-                <path d="M16 16l4.5 4.5" />
-              </svg>
-              <span className={styles.hidden}>{t('common.tools.search')}</span>
-            </Link>
-            <Link href="/account/" className={styles.tool}>
-              <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <circle cx="12" cy="8.5" r="3.8" />
-                <path d="M4.5 20c1.2-3.6 4-5.4 7.5-5.4s6.3 1.8 7.5 5.4" />
-              </svg>
-              <span className={styles.hidden}>{t('common.tools.account')}</span>
-            </Link>
-            <Link href="/account/wishlist/" className={styles.tool}>
-              <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.3a4.3 4.3 0 017.5 2.5C19.5 15.4 12 20 12 20z" />
-              </svg>
-              <span className={styles.hidden}>{wished > 0 ? t('common.tools.wishlistCount', { count: wished }) : t('common.tools.wishlist')}</span>
-              {wished > 0 ? (
-                <span className={styles.count} aria-hidden="true">
-                  {wished}
-                </span>
-              ) : null}
-            </Link>
-            <Link href="/cart/" className={styles.tool}>
-              <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M5.5 8h13l-1 12h-11z" />
-                <path d="M9 8V6.5a3 3 0 016 0V8" />
-              </svg>
-              <span className={styles.hidden}>{count > 0 ? t('common.tools.cartCount', { count }) : t('common.tools.cart')}</span>
-              {count > 0 ? (
-                <span className={styles.count} aria-hidden="true">
-                  {count}
-                </span>
-              ) : null}
+            </span>
+            <Link href="/cart/" className={base.cartButton}>
+              <Icon name="bag" className={base.iconSmall} />
+              <span aria-hidden="true">{count}</span>
+              <span className={base.hidden}>{cartLabel}</span>
             </Link>
           </div>
         </div>
       </header>
-      <main className={styles.main}>{children}</main>
-      <footer className={styles.footer}>
-        <div className={styles.columns}>
-          <div className={styles.about}>
-            <p className={styles.footerBrand}>{store.name}</p>
-            <p className={styles.note}>{store.tagline ?? t('common.footer.note')}</p>
-            {store.contactEmail ? <p className={styles.contact}>{store.contactEmail}</p> : null}
-            {store.contactPhone ? <p className={styles.contact}>{store.contactPhone}</p> : null}
-            {store.social.length ? (
-              <div className={styles.social}>
-                {store.social.map((s) => (
-                  <Link key={s.network} href={s.url} className={styles.footerLink}>
-                    {s.network}
-                  </Link>
-                ))}
+      <main id="main" className={base.main}>
+        {children}
+      </main>
+      <footer className={base.footer}>
+        <div className={base.wrap}>
+          <div className={base.footerGrid}>
+            <div className={base.footerAbout}>
+              {brand}
+              <p className={base.footerBlurb}>{t('common.footer.blurb', { city: store.address?.city ?? t('common.footer.cityFallback') })}</p>
+              <div className={base.footerChips}>
+                <span className={base.outlineChip}>{t('common.facts.fssaiShort')}</span>
+                <span className={base.outlineChip}>{t('common.facts.gstin')}</span>
               </div>
-            ) : null}
+            </div>
+            <FooterGroup title={t('common.footer.shop')} links={shop} />
+            <FooterGroup title={t('common.footer.help')} links={help} />
+            <FooterGroup title={t('common.footer.legal')} links={legal} />
           </div>
-          <div className={styles.links}>
-            <h2 className={styles.heading}>{t('common.footer.shop')}</h2>
-            <Link href="/collections/all/" className={styles.footerLink}>
-              {t('common.footer.all')}
-            </Link>
-            <Link href="/about/" className={styles.footerLink}>
-              {t('common.nav.about')}
-            </Link>
-            <Link href="/account/" className={styles.footerLink}>
-              {t('common.tools.account')}
-            </Link>
+          <div className={base.footerBase}>
+            <ul className={base.footerPay} aria-label={t('common.footer.payLabel')}>
+              <li>{t('common.pay.upi')}</li>
+              <li>{t('common.pay.cards')}</li>
+              <li>{t('common.pay.netbanking')}</li>
+              <li>{t('common.pay.cod')}</li>
+            </ul>
           </div>
-          <div className={styles.links}>
-            <h2 className={styles.heading}>{t('common.footer.help')}</h2>
-            <Link href="/contact/" className={styles.footerLink}>
-              {t('common.nav.contact')}
-            </Link>
-            <Link href="/policies/shipping/" className={styles.footerLink}>
-              {t('common.footer.shipping')}
-            </Link>
-            <Link href="/policies/returns/" className={styles.footerLink}>
-              {t('common.footer.returns')}
-            </Link>
-          </div>
-          <div className={styles.links}>
-            <h2 className={styles.heading}>{t('common.footer.legal')}</h2>
-            <Link href="/policies/terms/" className={styles.footerLink}>
-              {t('common.footer.terms')}
-            </Link>
-            <Link href="/policies/privacy/" className={styles.footerLink}>
-              {t('common.footer.privacy')}
-            </Link>
-            <Link href="/policies/legal/" className={styles.footerLink}>
-              {t('common.footer.notice')}
-            </Link>
-          </div>
+          {poweredBy ? (
+            <div className={base.footerCore}>
+              <PoweredBy brand={poweredBy} t={t} className={base.footerLink} />
+            </div>
+          ) : null}
         </div>
-        <div className={styles.base}>
-          <ConsentSettingsButton t={t} className={styles.cookies} />
-          <PoweredBy brand={poweredBy} t={t} className={styles.powered} />
-        </div>
+        <FooterBar />
       </footer>
-      <ConsentBanner t={t} className={styles.consent} />
+      {tab && !bar ? (
+        <nav className={base.tabbar} aria-label={t('common.tabs.label')}>
+          {tabs.map((item) => (
+            <span key={item.key} className={item.key === tab ? base.tabOn : undefined} aria-current={item.key === tab ? 'page' : undefined}>
+              <Link href={item.href} className={base.tab}>
+                <Icon name={item.icon} />
+                {item.label}
+                {item.key === 'cart' && count > 0 ? (
+                  <span className={base.tabCount} aria-hidden="true">
+                    {count}
+                  </span>
+                ) : null}
+              </Link>
+            </span>
+          ))}
+        </nav>
+      ) : null}
+      <ConsentBanner t={t} className={base.consent} />
     </div>
   )
 }

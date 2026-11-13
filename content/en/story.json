@@ -1,0 +1,30 @@
+{
+  "seoTitle": "Our story",
+  "hero": {
+    "eyebrow": "Our story",
+    "line1": "Rooted in tradition,",
+    "line2": "crafted for today",
+    "lead": "A spice house in {city} that cleans, grades and packs the spices South Indian kitchens use every day — the way they were made at home, sealed the way they should be now."
+  },
+  "packAlt": "A pack of spice powder",
+  "body": {
+    "p1": "{shop} started with a simple complaint: the spices in the shops did not taste like the ones ground at home. So we went back to the source — Guntur for chilli, the Erode belt for turmeric — and to the old recipes, and began packing them ourselves in {city}.",
+    "p2": "Every lot is cleaned and graded before it is ground, and checked again before it is sealed. Blends are roasted spice by spice and ground to a house recipe; single spices are one ingredient and nothing else.",
+    "p3": "We pack in 500 g household sizes because that is what a kitchen that cooks every day goes through, and we seal and batch-code every pouch so you know exactly what you are getting."
+  },
+  "values": {
+    "title": "What we hold ourselves to",
+    "v1Title": "Carefully selected ingredients",
+    "v1Body": "Bought from the regions known for each spice, and graded before anything is ground.",
+    "v2Title": "Multi-step processing",
+    "v2Body": "Cleaned, roasted where the recipe asks, ground and checked at every stage.",
+    "v3Title": "Hygienic packaging",
+    "v3Body": "Heat-sealed, tamper-evident pouches with a batch code on every one.",
+    "v4Title": "Made for everyday cooking",
+    "v4Body": "Household packs and honest blends for kitchens that cook every day."
+  },
+  "cta": {
+    "eyebrow": "Taste of home",
+    "title": "Cook with it this week"
+  }
+}

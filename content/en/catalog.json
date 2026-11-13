@@ -1,0 +1,107 @@
+{
+  "telugu": {
+    "garamMasala": "గరం మసాలా",
+    "chickenMasala": "చికెన్ మసాలా",
+    "muttonMasala": "మటన్ మసాలా",
+    "rasamPowder": "రసం పొడి",
+    "sambarPowder": "సాంబార్ పొడి",
+    "turmericPowder": "పసుపు",
+    "corianderPowder": "ధనియాల పొడి",
+    "gunturChilliPowder": "గుంటూరు కారం",
+    "papad": "అప్పడాలు"
+  },
+  "ingredients": {
+    "garamMasala": "Coriander, cumin, black pepper, cinnamon, cardamom, clove, bay leaf, nutmeg, mace, star anise",
+    "chickenMasala": "Coriander, red chilli, cumin, turmeric, black pepper, fennel, cinnamon, clove, cardamom, dry ginger, bay leaf",
+    "muttonMasala": "Coriander, red chilli, cumin, black pepper, fennel, cinnamon, clove, cardamom, nutmeg, mace, bay leaf",
+    "rasamPowder": "Coriander, toor dal, black pepper, cumin, red chilli, curry leaf, turmeric, asafoetida",
+    "sambarPowder": "Coriander, red chilli, chana dal, urad dal, fenugreek, cumin, black pepper, curry leaf, turmeric, asafoetida",
+    "turmericPowder": "Turmeric (100%)",
+    "corianderPowder": "Coriander seed (100%)",
+    "gunturChilliPowder": "Guntur red chilli (100%)",
+    "papad": "Urad dal flour, salt, edible vegetable oil, papad khar"
+  },
+  "blurb": {
+    "garamMasala": "Ten whole spices, roasted separately and ground together to a house recipe. Warm rather than hot — the heat comes from your chilli, not from this. Stir it in at the end of cooking.",
+    "chickenMasala": "A full-bodied blend for chicken curry and fry, built on coriander and chilli with whole-spice warmth. Add it with the onions and let it cook through.",
+    "muttonMasala": "Deeper and darker than the chicken blend, with more pepper and fennel for slow-cooked mutton. Brown it in the oil before the meat goes in.",
+    "rasamPowder": "Pepper-forward and tangy with toor dal and curry leaf, for a thin, clear rasam. A spoon to a pot, stirred into the tamarind water.",
+    "sambarPowder": "Roasted dals, coriander and chilli for a thick, everyday sambar. Add it with the tamarind and let it simmer.",
+    "turmericPowder": "Single-origin turmeric, cleaned and ground, nothing added. A pinch in dal, sabzi and the first tempering of almost everything.",
+    "corianderPowder": "Coriander seed, cleaned, lightly roasted and ground. The base of most curries — it thickens and rounds them out.",
+    "gunturChilliPowder": "Red chilli from Guntur, ground for colour and real heat. Use less than you think, and add more at the end.",
+    "papad": "Urad dal papad, sun-dried. Fry for a minute or roast over a flame, and serve with rice, rasam and everything else.",
+    "fallback": "Cleaned, graded and packed in 500 g pouches, sealed and batch-coded."
+  },
+  "shelf": {
+    "blend": "Blend",
+    "single": "Single",
+    "snack": "Snack",
+    "filter": "Filter",
+    "filterOn": "Filter · {count} on",
+    "category": "Category",
+    "count": "{count, plural, one {# product} other {# products}}",
+    "show": "{count, plural, =0 {No products} one {Show # product} other {Show # products}}",
+    "noFilters": "Nothing to filter here yet.",
+    "promoTitle": "Mix and match",
+    "promoLead": "Any pack, any number. Offers on now are applied automatically at checkout.",
+    "backToShelf": "Back to the shelf"
+  },
+  "card": {
+    "add": "Add",
+    "adding": "Adding",
+    "added": "Added",
+    "failed": "Try again",
+    "addNamed": "Add {name} to cart",
+    "addedNamed": "{name} added to your cart",
+    "soldOut": "Sold out",
+    "soldOutNamed": "{name} is sold out",
+    "inStock": "In stock",
+    "weight": "500 g",
+    "packAlt": "{name} 500 g pack"
+  },
+  "label": {
+    "title": "What is on the label",
+    "seePack": "As printed on the pack",
+    "ingredients": "Ingredients",
+    "netWeight": "Net weight",
+    "netWeightValue": "500 g (e)",
+    "mrp": "MRP",
+    "mrpValue": "inclusive of all taxes",
+    "fssai": "FSSAI licence",
+    "fssaiValue": "[Your FSSAI licence number]",
+    "bestBefore": "Best before",
+    "bestBeforeValue": "12 months from date of packing",
+    "allergen": "Allergen advice",
+    "allergenValue": "Packed in a facility that also handles mustard and sesame",
+    "maker": "Manufactured by",
+    "makerValue": "Bigsof Current Pvt Ltd, Habsiguda, {city} {postal}",
+    "origin": "Country of origin",
+    "originValue": "India",
+    "hsn": "HSN / GST",
+    "hsnValue": "0910 · 5%"
+  },
+  "spices": {
+    "title": "Spices",
+    "telugu": "మసాలా దినుసులు",
+    "intro": "Every pack is 500 g. Blends are ground to a house recipe; single spices are one ingredient and nothing else.",
+    "seoTitle": "Spices and masalas, 500 g packs",
+    "seoDescription": "Blended masalas and single spices, cleaned, graded and packed in sealed 500 g pouches."
+  },
+  "snacks": {
+    "title": "Snacks",
+    "telugu": "చిరుతిళ్ళు",
+    "intro": "Urad dal papad, sun-dried and packed by the dozen. Fry or roast, and serve with everything.",
+    "seoTitle": "Papad and snacks",
+    "seoDescription": "Sun-dried urad dal papad in sealed packs."
+  },
+  "bundles": {
+    "title": "Bundles & kits",
+    "telugu": "పెట్టెలు",
+    "intro": "Boxes built from the shelf. One button adds every pack; the cart prices them, offers included.",
+    "inside": "What is in the box",
+    "priced": "Each pack is priced as it is on the shelf; offers on now apply at checkout.",
+    "seoTitle": "Spice bundles and kits",
+    "seoDescription": "The South Indian Starter: sambar, rasam, turmeric and Guntur chilli in one box."
+  }
+}

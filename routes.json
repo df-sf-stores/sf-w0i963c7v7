@@ -25,7 +25,14 @@
     "degraded": "DegradedPage"
   },
   "custom": {
-    "/about": "AboutPage",
-    "/contact": "ContactPage"
+    "/spices": "SpicesPage",
+    "/snacks": "SnacksPage",
+    "/bundles": "BundlesPage",
+    "/our-story": "OurStoryPage",
+    "/quality": "QualityPage",
+    "/fssai-labelling": "FssaiPage",
+    "/track-order": "TrackOrderPage",
+    "/contact": "ContactPage",
+    "/faqs": "FaqsPage"
   }
 }
