@@ -297,18 +297,33 @@
 }
 
 .foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  display: grid;
+  gap: 10px;
   margin-top: auto;
   padding-top: 12px;
 }
 
-.stock {
+.stock,
+.stockOut {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--muted);
   font-size: 12px;
+}
+
+.stock::before,
+.stockOut::before {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--leaf);
+  content: '';
+}
+
+.stockOut::before {
+  background: var(--chilli);
 }
 
 .add {
@@ -328,6 +343,19 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.addWide {
+  width: 100%;
+  padding: 0 12px;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.add.addWide:hover:not(:disabled),
+.add.addWide:focus-visible {
+  background: var(--chilli);
+  color: var(--white);
 }
 
 .add:disabled {

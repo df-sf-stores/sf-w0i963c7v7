@@ -49,6 +49,7 @@
   },
   "card": {
     "add": "Add",
+    "addToCart": "Add to cart",
     "adding": "Adding",
     "added": "Added",
     "failed": "Try again",

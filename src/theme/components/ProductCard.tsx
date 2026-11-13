@@ -91,8 +91,8 @@ export const ProductCard = ({ product }: { product: Card }) => {
           <span className={shop.weight}>{t('catalog.card.weight')}</span>
         </div>
         <div className={shop.foot}>
-          <span className={shop.stock}>{product.stock.inStock ? t('catalog.card.inStock') : t('catalog.card.soldOut')}</span>
-          <QuickAdd href={product.href} name={product.name} inStock={product.stock.inStock} />
+          <span className={product.stock.inStock ? shop.stock : shop.stockOut}>{product.stock.inStock ? t('catalog.card.inStock') : t('catalog.card.soldOut')}</span>
+          <QuickAdd href={product.href} name={product.name} inStock={product.stock.inStock} wide />
         </div>
       </div>
     </article>

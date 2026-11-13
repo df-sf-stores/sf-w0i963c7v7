@@ -32,6 +32,14 @@
   --t-label: clamp(10px, calc(9px + 0.15vw), 11px);
   --tabbar: calc(64px + env(safe-area-inset-bottom));
   --bar: 0px;
+  /*
+   * Edge to edge: a theme may not style <body>, and nothing resets its browser margin (8px) on the live site, so the shell
+   * pins itself to the page's corners instead, whatever that margin is. The page still scrolls as one document.
+   */
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   display: flex;
   min-height: 100vh;
   flex-direction: column;

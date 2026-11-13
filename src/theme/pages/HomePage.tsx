@@ -24,12 +24,11 @@ export const HomePage = () => {
   const fromStore = taglineLines(store.tagline)
   const lines = fromStore.length ? fromStore : [t('home.hero.title')]
   const garam = kitchen.cards.find((c) => packOf(c.href).slug === 'garam-masala') ?? null
-  const count = (s: 'blend' | 'single' | 'snack') => shelf.products.filter((p) => packOf(p.href).shelf === s).length
   const counted = shelf.status === 'ready'
   const tiles = [
-    { href: '/spices/?shelf=blend', tone: shop.famChilli, eyebrow: counted ? t('home.shelf.blendCount', { count: count('blend') }) : t('home.shelf.blendEyebrow'), title: t('home.shelf.blendTitle'), blurb: t('home.shelf.blendBlurb'), image: 'blended_spice.png' as const, alt: t('home.shelf.blendAlt') },
-    { href: '/spices/?shelf=single', tone: shop.famLeaf, eyebrow: counted ? t('home.shelf.singleCount', { count: count('single') }) : t('home.shelf.singleEyebrow'), title: t('home.shelf.singleTitle'), blurb: t('home.shelf.singleBlurb'), image: 'single-spices.png' as const, alt: t('home.shelf.singleAlt') },
-    { href: '/snacks/', tone: shop.famIndigo, eyebrow: counted ? t('home.shelf.snackCount', { count: count('snack') }) : t('home.shelf.snackEyebrow'), title: t('home.shelf.snackTitle'), blurb: t('home.shelf.snackBlurb'), image: 'snacks.png' as const, alt: t('home.shelf.snackAlt') },
+    { href: '/spices/?shelf=blend', tone: shop.famChilli, title: t('home.shelf.blendTitle'), blurb: t('home.shelf.blendBlurb'), image: 'blended_spice.png' as const, alt: t('home.shelf.blendAlt') },
+    { href: '/spices/?shelf=single', tone: shop.famLeaf, title: t('home.shelf.singleTitle'), blurb: t('home.shelf.singleBlurb'), image: 'single-spices.png' as const, alt: t('home.shelf.singleAlt') },
+    { href: '/snacks/', tone: shop.famIndigo, title: t('home.shelf.snackTitle'), blurb: t('home.shelf.snackBlurb'), image: 'snacks.png' as const, alt: t('home.shelf.snackAlt') },
   ]
   const steps = [
     { title: t('home.field.s1Title'), body: t('home.field.s1Body') },
@@ -115,7 +114,6 @@ export const HomePage = () => {
                 <Link href={tile.href} className={`${shop.catTile} ${tile.tone}`}>
                   <Diamond className={`${base.diamond} ${shop.corner}`} />
                   <span className={shop.catText}>
-                    <span className={base.label}>{tile.eyebrow}</span>
                     <span className={base.small}>{tile.title}</span>
                     <span className={shop.catBlurb}>{tile.blurb}</span>
                   </span>

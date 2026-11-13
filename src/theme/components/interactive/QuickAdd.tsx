@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useCart, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { clsx } from 'clsx'
 import { slugOf } from '../catalog'
 import { Icon } from '../Icon'
 import shop from '../../styles/shop.module.css'
@@ -13,9 +14,10 @@ const versionsQuery = 'query($s:String!){product(slug:$s){versions{id,inStock}}}
 
 /**
  * The square ADD on a product card. It adds one pack of the product's first version in stock, then says so for a moment;
- * the header's and tab bar's cart counts update from core's cart as it changes.
+ * the header's and tab bar's cart counts update from core's cart as it changes. `wide` is the product card's full-width
+ * "Add to cart" with the bag.
  */
-export const QuickAdd = ({ href, name, inStock, tone = 'ink', label }: { href: string; name: string; inStock: boolean; tone?: 'ink' | 'white'; label?: string }) => {
+export const QuickAdd = ({ href, name, inStock, tone = 'ink', label, wide = false }: { href: string; name: string; inStock: boolean; tone?: 'ink' | 'white'; label?: string; wide?: boolean }) => {
   const { client, t } = useStorefront()
   const cart = useCart()
   const [state, setState] = useState<'idle' | 'adding' | 'added' | 'failed'>('idle')
@@ -37,17 +39,17 @@ export const QuickAdd = ({ href, name, inStock, tone = 'ink', label }: { href: s
       settle('failed')
     }
   }
-  const words = state === 'added' ? t('catalog.card.added') : state === 'failed' ? t('catalog.card.failed') : state === 'adding' ? t('catalog.card.adding') : (label ?? t('catalog.card.add'))
+  const words = state === 'added' ? t('catalog.card.added') : state === 'failed' ? t('catalog.card.failed') : state === 'adding' ? t('catalog.card.adding') : (label ?? (wide ? t('catalog.card.addToCart') : t('catalog.card.add')))
   return (
     <>
       <button
         type="button"
-        className={tone === 'white' ? shop.addWhite : state === 'added' ? shop.addDone : shop.add}
+        className={clsx(tone === 'white' ? shop.addWhite : state === 'added' ? shop.addDone : shop.add, wide && shop.addWide)}
         disabled={!inStock || state === 'adding'}
         aria-label={inStock ? t('catalog.card.addNamed', { name }) : t('catalog.card.soldOutNamed', { name })}
         onClick={() => void add()}
       >
-        {state === 'added' ? <Icon name="check" className={shop.addIcon} /> : null}
+        {state === 'added' ? <Icon name="check" className={shop.addIcon} /> : wide && inStock && state === 'idle' ? <Icon name="bag" className={shop.addIcon} /> : null}
         <span aria-hidden="true">{inStock ? words : t('catalog.card.soldOut')}</span>
       </button>
       <span className={shop.live} role="status">
