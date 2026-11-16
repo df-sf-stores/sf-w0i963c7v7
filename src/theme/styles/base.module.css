@@ -1077,7 +1077,10 @@
   gap: 10px;
 }
 
+/* Our "Powered by" text, or core's sealed "Powered by {brand}" line in its place: 12px, the bar's own colour. */
 .powered {
+  --df-sealed-size: 12px;
+  --df-sealed-muted: rgb(248 250 252 / 70%);
   white-space: nowrap;
 }
 

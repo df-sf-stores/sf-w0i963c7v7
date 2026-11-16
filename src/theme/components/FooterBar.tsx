@@ -1,4 +1,4 @@
-import { ConsentSettingsButton, Link, ThemeImage, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { ConsentSettingsButton, Link, PoweredBy, ThemeImage, useStorefront } from '@dripfunnel/storefront-core/theme'
 import { clsx } from 'clsx'
 import { oneLine } from './contact'
 import base from '../styles/base.module.css'
@@ -17,9 +17,12 @@ const LOGO_RATIO = 2077 / 369
  * The copyright line is common.footer.company with the store's address from Settings; its year is written in that
  * content, as a theme may not read the clock. The logo goes through core's
  * <Link>, the only link a theme may render; it opens a new tab in the studio, the same tab on the live site.
+ *
+ * When the store has a Powered-by brand, core's sealed <PoweredBy> line ("Powered by {brand}") stands in for our own
+ * "Powered by" text: the platform requires that line on every page, and here it is the only one.
  */
 export const FooterBar = ({ className }: { className?: string }) => {
-  const { store, t } = useStorefront()
+  const { store, t, poweredBy } = useStorefront()
   const address = oneLine(store.address)
   return (
     <div className={clsx(base.bottomBar, className)}>
@@ -33,7 +36,7 @@ export const FooterBar = ({ className }: { className?: string }) => {
             </>
           ) : null}
           <span className={base.poweredRow}>
-            <span className={base.powered}>{t('common.footer.poweredBy')}</span>
+            {poweredBy ? <PoweredBy brand={poweredBy} t={t} className={base.powered} /> : <span className={base.powered}>{t('common.footer.poweredBy')}</span>}
             <Link href={t('common.footer.poweredUrl')} className={base.brandLink}>
               <ThemeImage src={LOGO_FILE} alt={t('common.footer.poweredLogo')} ratio={LOGO_RATIO} sizes="104px" className={base.brandLogo} />
             </Link>

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { ConsentBanner, Link, PoweredBy, PreviewBanner, useCart, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { ConsentBanner, Link, PreviewBanner, useCart, useStorefront } from '@dripfunnel/storefront-core/theme'
 import { FooterBar } from './FooterBar'
 import { Icon } from './Icon'
 import base from '../styles/base.module.css'
@@ -10,7 +10,7 @@ import cartStyles from '../styles/cart.module.css'
  * the 1 Cart, 2 Delivery, 3 Pay stepper. No menu and no tab bar, so nothing stacks over the payment.
  */
 export const CheckoutLayout = ({ children }: { children: ReactNode }) => {
-  const { store, t, mode, poweredBy } = useStorefront()
+  const { store, t, mode } = useStorefront()
   const { cart } = useCart()
   const paying = cart?.step === 'pay'
   const steps = [
@@ -55,11 +55,6 @@ export const CheckoutLayout = ({ children }: { children: ReactNode }) => {
           <Link href="/policies/refunds/">{t('common.footer.refunds')}</Link>
           <Link href="/policies/shipping/">{t('common.footer.shippingPolicy')}</Link>
         </p>
-        {poweredBy ? (
-          <div className={base.footerCore}>
-            <PoweredBy brand={poweredBy} t={t} className={base.footerLink} />
-          </div>
-        ) : null}
         <FooterBar className={cartStyles.checkoutBase} />
       </footer>
       <ConsentBanner t={t} className={base.consent} />

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { ConsentBanner, Link, PoweredBy, PreviewBanner, StoreLogo, useCart, useOffers, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { ConsentBanner, Link, PreviewBanner, StoreLogo, useCart, useOffers, useStorefront } from '@dripfunnel/storefront-core/theme'
 import { clsx } from 'clsx'
 import { Icon } from './Icon'
 import { FooterBar } from './FooterBar'
@@ -43,7 +43,7 @@ const Announce = () => {
  * logo, search, cart). `bar` says the page keeps its own sticky action bar, so the tab bar steps aside for it.
  */
 export const Layout = ({ children, title, back = '/', nav, tab = 'shop', bar = false }: { children: ReactNode; title?: string; back?: BackTo; nav?: NavKey; tab?: TabKey | null; bar?: boolean }) => {
-  const { store, t, mode, poweredBy } = useStorefront()
+  const { store, t, mode } = useStorefront()
   const { count } = useCart()
   const links: { key: NavKey; href: string; label: string }[] = [
     { key: 'spices', href: '/spices/', label: t('common.nav.spices') },
@@ -173,11 +173,6 @@ export const Layout = ({ children, title, back = '/', nav, tab = 'shop', bar = f
               <li>{t('common.pay.cod')}</li>
             </ul>
           </div>
-          {poweredBy ? (
-            <div className={base.footerCore}>
-              <PoweredBy brand={poweredBy} t={t} className={base.footerLink} />
-            </div>
-          ) : null}
         </div>
         <FooterBar />
       </footer>
